@@ -1,0 +1,115 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-display: "Sora", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --color-ink-950: #070b14;
+  --color-ink-900: #0a101d;
+  --color-ink-850: #0d1526;
+  --color-ink-800: #111b30;
+  --color-ink-700: #1a2740;
+  --color-ink-600: #24344f;
+
+  --color-gold-300: #f2d38b;
+  --color-gold-400: #e6bc5c;
+  --color-gold-500: #d4a437;
+  --color-gold-600: #b18427;
+
+  --color-crimson-400: #f0596d;
+  --color-crimson-500: #e0344c;
+  --color-crimson-600: #b02036;
+
+  --animate-reveal-flip: reveal-flip 0.65s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+  --animate-pop: pop 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.4) both;
+  --animate-fade-up: fade-up 0.5s ease-out both;
+  --animate-glow: glow-pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes reveal-flip {
+  0% { transform: rotateX(90deg); opacity: 0; }
+  100% { transform: rotateX(0deg); opacity: 1; }
+}
+
+@keyframes pop {
+  0% { transform: scale(0.6); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fade-up {
+  0% { transform: translateY(10px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 18px 2px rgba(212, 164, 55, 0.28); }
+  50% { box-shadow: 0 0 34px 8px rgba(212, 164, 55, 0.5); }
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background:
+    radial-gradient(1200px 700px at 70% -10%, rgba(36, 52, 79, 0.55), transparent 60%),
+    radial-gradient(900px 600px at 0% 110%, rgba(176, 32, 54, 0.12), transparent 55%),
+    var(--color-ink-950);
+  color: #dbe2ef;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* board grid lines */
+.board-grid {
+  background-color: var(--color-ink-850);
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.10) 1px, transparent 1px);
+  background-size: calc(100% / var(--n)) calc(100% / var(--n));
+}
+
+.stone-b {
+  background:
+    radial-gradient(circle at 34% 30%, #55637e 0%, #232c3f 45%, #0a0e18 100%);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.55),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.stone-w {
+  background:
+    radial-gradient(circle at 34% 30%, #ffffff 0%, #d7ddea 55%, #9aa5bd 100%);
+  box-shadow:
+    0 2px 6px rgba(0, 0, 0, 0.45),
+    inset 0 -2px 4px rgba(70, 82, 105, 0.35);
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb { background: var(--color-ink-600); border-radius: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+
+/* betting slider */
+input[type="range"].bet-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(90deg, var(--color-gold-500) var(--fill, 0%), var(--color-ink-600) var(--fill, 0%));
+  outline: none;
+}
+input[type="range"].bet-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: #f2d38b;
+  border: 2px solid #0a101d;
+  box-shadow: 0 0 10px rgba(212, 164, 55, 0.6);
+  cursor: pointer;
+}
